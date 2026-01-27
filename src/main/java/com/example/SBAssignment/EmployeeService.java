@@ -4,6 +4,7 @@ import com.example.SBAssignment.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.Optional;
 public class EmployeeService {
     @Autowired
     EmployeeRepository empRepo;
+    @Autowired
+    AuditRepository auditRepo;
 
     public EmployeeEntity addEmployee(EmployeeEntity empEntity) {
         return empRepo.save(empEntity);
@@ -76,5 +79,15 @@ public class EmployeeService {
 
     public List<LowestSalaryPerDepartment> getMinSalPerDept() {
         return empRepo.getMinimumSalaryPerDepartment();
+    }
+
+    @Transactional
+    public EmployeeEntity addEmployeeWithAudit(EmployeeEntity empEntity) {
+        EmployeeEntity saved = empRepo.save(empEntity);
+        AuditLogEntity log = new AuditLogEntity();
+        log.setAction("Employee Joined");
+        log.setEmployeeId(saved.getId());
+        auditRepo.save(log);
+        return saved;
     }
 }

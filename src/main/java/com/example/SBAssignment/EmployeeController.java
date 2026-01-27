@@ -76,4 +76,9 @@ public class EmployeeController {
     public List<LowestSalaryPerDepartment> getMinSalPerDept() {
         return empService.getMinSalPerDept();
     }
+
+    @PostMapping("/with-audit")
+    public EmployeeEntity createEmployeeWithAudit(@RequestBody EmployeeEntity emp) {
+        return empService.addEmployeeWithAudit(emp);
+    }
 }
