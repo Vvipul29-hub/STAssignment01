@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/employees")
@@ -19,7 +18,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public Optional<EmployeeEntity> getEmployeeById(@PathVariable long id) {
+    public EmployeeEntity getEmployeeById(@PathVariable long id) {
         return empService.getEmployeeById(id);
     }
 

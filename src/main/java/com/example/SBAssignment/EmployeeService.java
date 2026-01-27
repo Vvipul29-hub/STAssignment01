@@ -1,5 +1,6 @@
 package com.example.SBAssignment;
 
+import com.example.SBAssessment.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +28,8 @@ public class EmployeeService {
         return empRepo.findAll();
     }
 
-    public Optional<EmployeeEntity> getEmployeeById(long id) {
-        return empRepo.findById(id);
+    public EmployeeEntity getEmployeeById(long id) {
+        return empRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Employee with id "+id+" not found"));
     }
 
     public EmployeeEntity updateEmployeeById(long id, EmployeeEntity updatedEmp) {
