@@ -1,4 +1,4 @@
-package com.example.SBAssessment.exception;
+package com.example.SBAssignment.exception;
 
 import java.time.LocalDateTime;
 

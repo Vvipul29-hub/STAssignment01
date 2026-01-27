@@ -1,6 +1,6 @@
 package com.example.SBAssignment;
 
-import com.example.SBAssessment.exception.ResourceNotFoundException;
+import com.example.SBAssignment.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
