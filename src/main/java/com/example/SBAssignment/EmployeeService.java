@@ -36,7 +36,6 @@ public class EmployeeService {
         Optional<EmployeeEntity> currentEmp = empRepo.findById(id);
         if(currentEmp.isPresent()) {
             EmployeeEntity existingEmp = currentEmp.get();
-//            existingEmp.setId(updatedEmp.getId());
             existingEmp.setDepartment(updatedEmp.getDepartment());
             existingEmp.setName(updatedEmp.getName());
             existingEmp.setSalary(updatedEmp.getSalary());
