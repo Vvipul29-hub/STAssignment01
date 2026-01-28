@@ -2,6 +2,7 @@ package com.example.SBAssignment;
 
 import com.example.SBAssignment.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class EmployeeService {
@@ -19,6 +21,7 @@ public class EmployeeService {
     AuditRepository auditRepo;
 
     public EmployeeEntity addEmployee(EmployeeEntity empEntity) {
+        log.info("Employee {} added", empEntity.getName());
         return empRepo.save(empEntity);
     }
 
@@ -50,6 +53,7 @@ public class EmployeeService {
     }
 
     public List<EmployeeEntity> getEmployeesByDept(String dept) {
+        log.info("Fetched Employees by department: {}", dept);
         return empRepo.findAllByDepartment(dept);
     }
 
